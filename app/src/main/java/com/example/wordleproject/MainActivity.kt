@@ -36,13 +36,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val button = findViewById<Button>(R.id.submitWord)
-        val reset = findViewById<Button>(R.id.reset)
+
         Log.i("THE WORD IS", wordToGuess)
-
-        reset.setOnClickListener {
-
-        }
-
+        
             button.setOnClickListener() {
 
                 var input = findViewById<EditText>(R.id.editText)
@@ -52,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     var finalView = findViewById<TextView>(R.id.Final)
                     finalView.text = wordToGuess.toString()
                     output.text = "You Win!"
-                    counter = 5
+                    counter = -100
                 }
 
                 if(counter == 0) {
@@ -104,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                     hintText.text = hint
                     hintText.visibility = View.VISIBLE
 
-                    if(wordGuessed.toString().uppercase() == wordToGuess ){
+                    if(wordGuessed.toString().uppercase() != wordToGuess ){
                         var output = findViewById<TextView>(R.id.result)
                         output.text = "You Lose!"
                         var finalView = findViewById<TextView>(R.id.Final)
@@ -112,13 +108,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 }
-                if(counter == 3){
 
-                    var output = findViewById<TextView>(R.id.result)
-                    output.text = "You Lose!"
+                if(counter > 2){
                     Toast.makeText(it.context, "Guesses Exceeded!", Toast.LENGTH_SHORT).show()
-                    var finalView = findViewById<TextView>(R.id.Final)
-                    finalView.text = wordToGuess.toString()
                 }
                 counter+=1;
                 }
